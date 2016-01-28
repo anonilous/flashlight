@@ -22,3 +22,6 @@
                 |-colors.xml
                 |-strings.xml
 ```
+
+1. Theme error related to V7 in Extras
+2. ADB error related to platform-tools
