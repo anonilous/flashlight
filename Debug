@@ -1,0 +1,48 @@
+01-28 16:53:22.548 6849-6849/? I/art: Late-enabling -Xcheck:jni
+01-28 16:53:23.791 6849-6859/com.flashlight.app W/art: Suspending all threads took: 5.878ms
+01-28 16:53:23.859 6849-6924/com.flashlight.app D/OpenGLRenderer: Render dirty regions requested: true
+01-28 16:53:23.879 6849-6849/com.flashlight.app D/Atlas: Validating map...
+01-28 16:53:23.956 6849-6924/com.flashlight.app I/Adreno-EGL: <qeglDrvAPI_eglInitialize:410>: EGL 1.4 QUALCOMM build: AU_LINUX_ANDROID_LA.BF.1.1_RB1.05.00.00.002.030_msm8226_LA.BF.1.1_RB1__release_AU ()
+                                                              OpenGL ES Shader Compiler Version: E031.25.03.00
+                                                              Build Date: 12/04/14 Thu
+                                                              Local Branch:
+                                                              Remote Branch: quic/LA.BF.1.1_rb1.14
+                                                              Local Patches: NONE
+                                                              Reconstruct Branch: AU_LINUX_ANDROID_LA.BF.1.1_RB1.05.00.00.002.030 +  NOTHING
+01-28 16:53:23.960 6849-6924/com.flashlight.app I/OpenGLRenderer: Initialized EGL, version 1.4
+01-28 16:53:24.034 6849-6924/com.flashlight.app D/OpenGLRenderer: Enabling debug mode 0
+01-28 16:54:06.546 6849-6849/com.flashlight.app W/CameraBase: An error occurred while connecting to camera: 0
+01-28 16:54:06.548 6849-6849/com.flashlight.app D/AndroidRuntime: Shutting down VM
+01-28 16:54:06.559 6849-6849/com.flashlight.app E/AndroidRuntime: FATAL EXCEPTION: main
+                                                                  Process: com.flashlight.app, PID: 6849
+                                                                  java.lang.RuntimeException: Unable to instantiate activity ComponentInfo{com.flashlight.app/com.flashlight.app.FlashlightActivity}: java.lang.RuntimeException: Fail to connect to camera service
+                                                                      at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2225)
+                                                                      at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2386)
+                                                                      at android.app.ActivityThread.access$800(ActivityThread.java:148)
+                                                                      at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1292)
+                                                                      at android.os.Handler.dispatchMessage(Handler.java:102)
+                                                                      at android.os.Looper.loop(Looper.java:135)
+                                                                      at android.app.ActivityThread.main(ActivityThread.java:5310)
+                                                                      at java.lang.reflect.Method.invoke(Native Method)
+                                                                      at java.lang.reflect.Method.invoke(Method.java:372)
+                                                                      at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)
+                                                                      at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696)
+                                                                   Caused by: java.lang.RuntimeException: Fail to connect to camera service
+                                                                      at android.hardware.Camera.<init>(Camera.java:522)
+                                                                      at android.hardware.Camera.open(Camera.java:378)
+                                                                      at com.flashlight.app.FlashlightActivity.<init>(FlashlightActivity.java:15)
+                                                                      at java.lang.reflect.Constructor.newInstance(Native Method)
+                                                                      at java.lang.Class.newInstance(Class.java:1572)
+                                                                      at android.app.Instrumentation.newActivity(Instrumentation.java:1088)
+                                                                      at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2215)
+                                                                      at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2386) 
+                                                                      at android.app.ActivityThread.access$800(ActivityThread.java:148) 
+                                                                      at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1292) 
+                                                                      at android.os.Handler.dispatchMessage(Handler.java:102) 
+                                                                      at android.os.Looper.loop(Looper.java:135) 
+                                                                      at android.app.ActivityThread.main(ActivityThread.java:5310) 
+                                                                      at java.lang.reflect.Method.invoke(Native Method) 
+                                                                      at java.lang.reflect.Method.invoke(Method.java:372) 
+                                                                      at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901) 
+                                                                      at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696) 
+01-28 16:54:08.581 6849-6849/com.flashlight.app I/Process: Sending signal. PID: 6849 SIG: 9
