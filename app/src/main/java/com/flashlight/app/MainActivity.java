@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -77,32 +78,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        }
 //    }
 
-//    /**
-//	 * Get the camera
-//	 */
-//    private void getCamera() {
-//        if (camera == null) {
-//            try {
-//                camera = Camera.open();
-//                params = camera.getParameters();
-//            } catch (RuntimeException e) {
-//                Log.e("Camera Error. Failed to Open. Error: ", e.getMessage());
-//            }
-//        }
-//    }
-
-    /** A safe way to get an instance of the Camera object. */
-    public static Camera getCameraInstance(){
-        Camera camera = null;
-        try {
-            camera = Camera.open(); // attempt to get a Camera instance
-//            params = camera.getParameters();
+    /**
+	 * Get the camera
+	 */
+    private void getCamera() {
+        if (camera == null) {
+            try {
+                camera = Camera.open();
+                params = camera.getParameters();
+            } catch (RuntimeException e) {
+                Log.e("Failed to Open. Error: ", e.getMessage());
+            }
         }
-        catch (Exception e){
-            // Camera is not available (in use or does not exist)
-        }
-        return camera; // returns null if camera is unavailable
     }
+
+//    /** A safe way to get an instance of the Camera object. */
+//    public static Camera getCameraInstance(){
+//        Camera camera = null;
+//        try {
+//            camera = Camera.open(); // attempt to get a Camera instance
+////            params = camera.getParameters();
+//        }
+//        catch (Exception e){
+//            // Camera is not available (in use or does not exist)
+//        }
+//        return camera; // returns null if camera is unavailable
+//    }
 
     /**
      * Switch button click event to toggle flash on/off
@@ -146,7 +147,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
          * Turning off flash
          */
     private void turnOffFlash() {
-        if (!isFlashOn) {
+        if (isFlashOn) {
             if (camera == null || params == null) {
                 return;
             }
@@ -197,8 +198,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStart();
         
         // on starting the app get the camera params
-//        getCamera();
-        getCameraInstance();
+        getCamera();
+//        getCameraInstance();
     }
 
     @Override
