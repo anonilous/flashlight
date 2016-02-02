@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Flashlight</string>
     <string name="again_exit">Press again to exit</string>
+    <string name="toggle_button">ToggleButton</string>
 </resources>

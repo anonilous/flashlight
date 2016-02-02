@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".FlashlightActivity">
 
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:checked="true"
-        android:text="ToggleButton" />
+        android:text="@string/toggle_button" />
 
-</LinearLayout>
+    <TextView android:text="Developed by Sherlockleo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="15dip"
+        android:textSize="13dip"
+        android:textColor="#3b3b3b"
+        android:layout_marginBottom="15dip"/>
+</RelativeLayout>

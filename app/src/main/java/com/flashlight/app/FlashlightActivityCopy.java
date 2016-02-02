@@ -1,7 +1,5 @@
 //package com.flashlight.app;
 //
-//import android.content.Context;
-//import android.content.pm.PackageManager;
 //import android.hardware.Camera;
 //import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
@@ -9,7 +7,7 @@
 //import android.view.WindowManager;
 //import android.widget.ToggleButton;
 //
-//public class FlashlightActivity extends AppCompatActivity implements View.OnClickListener {
+//public class FlashlightActivityCopy extends AppCompatActivity implements View.OnClickListener {
 //
 //    private ToggleButton toggleButton;
 ////    private Camera2 camera2 = Camera2.open();
@@ -47,29 +45,4 @@
 ////      Process.killProcess(Process.myPid());
 //        super.onPause();
 //    }
-//
-//
-////    /** Check if this device has a camera */
-////    private boolean checkCameraHardware(Context context) {
-////        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-////            // this device has a camera
-////            return true;
-////        } else {
-////            // no camera on this device
-////            return false;
-////        }
-////    }
-////
-////    /** A safe way to get an instance of the Camera object. */
-////    public static Camera getCameraInstance(){
-////        Camera camera = null;
-////        try {
-////            camera = Camera.open(); // attempt to get a Camera instance
-////        }
-////        catch (Exception e){
-////            // Camera is not available (in use or does not exist)
-////        }
-////        return camera; // returns null if camera is unavailable
-////    }
-//
 //}
