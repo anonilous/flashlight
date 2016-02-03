@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private ToggleButton toggleButton;
 
-    private Camera camera;
+    private Camera mCamera;
     private boolean hasCamera;
     private boolean isFlashOn;
     private boolean hasFlash;
@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-        if (!hasCameraHardware(this)) {
+        if (!checkCameraHardware(this)) {
             // device doesn't support flash
             // Show alert message and close the application
             AlertDialog alert = new AlertDialog.Builder(MainActivity.this)
@@ -58,14 +58,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Toast.LENGTH_SHORT).show();
             return;
         }
+        // Create an instance of Camera
+        mCamera = getCameraInstance();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // on starting the app get the camera params
-        getCamera();
-//        getCameraInstance();
+        // on starting the app get the mCamera params
+//        getCamera();
+        getCameraInstance();
     }
 
     @Override
@@ -88,10 +90,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onStop() {
         super.onStop();
 
-        // on stop release the camera
-        if (camera != null) {
-            camera.release();
-            camera = null;
+        // on stop release the mCamera
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
         }
     }
 
@@ -106,50 +108,52 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     /**
-     * Check if this device has a camera and support flashlight or not
+     * Check if this device has a mCamera and support flashlight or not
      */
-    private boolean hasCameraHardware(Context context) {
+    private boolean checkCameraHardware(Context context) {
         hasCamera = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
         hasFlash = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (hasCamera) {
-            // this device has a camera
+            // this device has a mCamera
             if (hasFlash) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            // no camera on this device
+            // no mCamera on this device
             return false;
         }
     }
 
-    /**
-	 * Get the camera
-	 */
-    private void getCamera() {
-        if (camera == null) {
-            try {
-                camera = Camera.open();
-                params = camera.getParameters();
-            } catch (RuntimeException e) {
-                Log.e("Failed to Open. Error: ", e.getMessage());
-            }
-        }
-    }
-
-//    /** A safe way to get an instance of the Camera object. */
-//    public static Camera getCameraInstance(){
-//        Camera camera = null;
-//        try {
-//            camera = Camera.open(); // attempt to get a Camera instance
-////            params = camera.getParameters();
+//    /**
+//	 * Get the mCamera
+//	 */
+//    private void getCamera() {
+//        if (mCamera == null) {
+//            try {
+//                mCamera = Camera.open();
+//                params = mCamera.getParameters();
+//            } catch (RuntimeException e) {
+//                Log.e("Failed to Open. Error: ", e.getMessage());
+//            }
 //        }
-//        catch (Exception e){
-//            // Camera is not available (in use or does not exist)
-//        }
-//        return camera; // returns null if camera is unavailable
 //    }
+
+    /**
+     * A safe way to get an instance of the Camera object.
+     */
+    public static Camera getCameraInstance() {
+        Camera camera = null;
+        try {
+            camera = Camera.open(); // attempt to get a Camera instance
+//            params = mCamera.getParameters();
+        } catch (Exception e) {
+            // Camera is not available (in use or does not exist)
+            Log.e("Failed to Open. Error: ", e.getMessage());
+        }
+        return camera; // returns null if mCamera is unavailable
+    }
 
     /**
      * Switch button click event to toggle flash on/off
@@ -172,16 +176,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void turnOnFlash() {
         if (!isFlashOn) {
-            if (camera == null || params == null) {
+            if (mCamera == null || params == null) {
                 return;
             }
             // play sound
             // playSound();
 
-            params = camera.getParameters();
+            params = mCamera.getParameters();
             params.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(params);
-            camera.startPreview();
+            mCamera.setParameters(params);
+            mCamera.startPreview();
             isFlashOn = true;
             Toast.makeText(getApplicationContext(), "Turned on flash", Toast.LENGTH_SHORT).show();
             // changing button/switch image
@@ -194,16 +198,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     private void turnOffFlash() {
         if (isFlashOn) {
-            if (camera == null || params == null) {
+            if (mCamera == null || params == null) {
                 return;
             }
             // play sound
             // playSound();
 
-            params = camera.getParameters();
+            params = mCamera.getParameters();
             params.setFlashMode(Parameters.FLASH_MODE_OFF);
-            camera.setParameters(params);
-            camera.stopPreview();
+            mCamera.setParameters(params);
+            mCamera.stopPreview();
             isFlashOn = false;
             Toast.makeText(getApplicationContext(), "Turned off flash", Toast.LENGTH_SHORT).show();
             // changing button/switch image
