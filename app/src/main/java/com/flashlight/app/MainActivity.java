@@ -52,14 +52,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             });
             alert.show();
-//            return;
         } else {
             Toast.makeText(getApplicationContext(), "Your device support flash light!",
                     Toast.LENGTH_SHORT).show();
-            return;
+            // Create an instance of Camera
+            mCamera = getCameraInstance();
+            params = mCamera.getParameters();
         }
-        // Create an instance of Camera
-        mCamera = getCameraInstance();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStart();
         // on starting the app get the mCamera params
 //        getCamera();
-        getCameraInstance();
+//        getCameraInstance();
     }
 
     @Override
@@ -144,15 +143,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * A safe way to get an instance of the Camera object.
      */
     public static Camera getCameraInstance() {
-        Camera camera = null;
+        Camera mCamera = null;
         try {
-            camera = Camera.open(); // attempt to get a Camera instance
-//            params = mCamera.getParameters();
+            mCamera = Camera.open(); // attempt to get a Camera instance
         } catch (Exception e) {
             // Camera is not available (in use or does not exist)
             Log.e("Failed to Open. Error: ", e.getMessage());
         }
-        return camera; // returns null if mCamera is unavailable
+        return mCamera; // returns null if mCamera is unavailable
     }
 
     /**
