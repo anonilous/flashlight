@@ -38,45 +38,47 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-//        hasFlash = checkCameraHardware(this);
-//        if (!hasFlash) {
-//            // device doesn't support flash
-//            // Show alert message and close the application
-//            AlertDialog alert = new AlertDialog.Builder(MainActivity.this)
-//                    .create();
-//            alert.setTitle("Error");
-//            alert.setMessage("Sorry, your device doesn't support flash light!");
-//            alert.setButton("OK", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int which) {
-//                    // closing the application
-//                    finish();
-//                }
-//            });
-//            alert.show();
-////            return;
-//        } else {
-//            Toast.makeText(getApplicationContext(), "Your device support flash light!",
-//                    Toast.LENGTH_SHORT).show();
-//        }
+        if (!hasCameraHardware(this)) {
+            // device doesn't support flash
+            // Show alert message and close the application
+            AlertDialog alert = new AlertDialog.Builder(MainActivity.this)
+                    .create();
+            alert.setTitle("Error");
+            alert.setMessage("Sorry, your device doesn't support flash light!");
+            alert.setButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // closing the application
+                    finish();
+                }
+            });
+            alert.show();
+//            return;
+        } else {
+            Toast.makeText(getApplicationContext(), "Your device support flash light!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
 
-//    /** Check if this device has a camera and support flashlight or not*/
-//    private boolean checkCameraHardware(Context context) {
-//        hasCamera = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
-//        hasFlash = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-//        if (hasCamera){
-//            // this device has a camera
-//            if (hasFlash) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            // no camera on this device
-//            return false;
-//        }
-//    }
+    /**
+     * Check if this device has a camera and support flashlight or not
+     */
+    private boolean hasCameraHardware(Context context) {
+        hasCamera = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+        hasFlash = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        if (hasCamera) {
+            // this device has a camera
+            if (hasFlash) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
 
     /**
 	 * Get the camera
@@ -168,6 +170,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
     }
     
