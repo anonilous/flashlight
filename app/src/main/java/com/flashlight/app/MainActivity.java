@@ -60,6 +60,50 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // on starting the app get the camera params
+        getCamera();
+//        getCameraInstance();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // on resume turn on the flash
+        if (hasFlash) {
+            turnOnFlash();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // on pause turn off the flash
+        turnOffFlash();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        // on stop release the camera
+        if (camera != null) {
+            camera.release();
+            camera = null;
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     /**
      * Check if this device has a camera and support flashlight or not
@@ -145,9 +189,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-        /**
-         * Turning off flash
-         */
+    /**
+     * Turning off flash
+     */
     private void turnOffFlash() {
         if (isFlashOn) {
             if (camera == null || params == null) {
@@ -166,55 +210,4 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // toggleButtonImage();
         }
     }
-
-
-    @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
-    }
-    
-    @Override
-    protected void onPause() {
-        super.onPause();
-        
-        // on pause turn off the flash
-        turnOffFlash();
-    }
-    
-    @Override
-    protected void onRestart() {
-       super.onRestart();
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        
-        // on resume turn on the flash
-        if(hasFlash)
-        turnOnFlash();
-    }
-    
-    @Override
-    protected void onStart() {
-        super.onStart();
-        
-        // on starting the app get the camera params
-        getCamera();
-//        getCameraInstance();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        
-        // on stop release the camera
-        if (camera != null) {
-            camera.release();
-            camera = null;
-        }
-    }
-
-
 }
